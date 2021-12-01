@@ -1,0 +1,67 @@
+<div class="container">
+  <div class="row">
+      <div class="col-4 p-3">
+        <form #dataForm="ngForm" (ngSubmit)="addTienda(dataForm)">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="tiendaService.selected._id">
+              <div class="form-group mb-3">
+                  <label for="strNombre" class="form-label">Nombre</label>
+                  <input type="text" name="strNombre" #name="ngModel" [(ngModel)]="tiendaService.selected.strNombre"
+                placeholder="Ingrese el nombre de la tienda" class="form-control">
+              </div>
+              
+              <div class="form-group mb-3">
+                  <label for="strDireccion" class="form-label">Ingrese la dirección</label>
+                  <input type="text" name="strDireccion" #name="ngModel" [(ngModel)]="tiendaService.selected.strDireccion"
+                  value="" placeholder="Ingrese la dirección" class="form-control">
+              </div>
+              <div class="form-group mb-3">
+                  <label for="strTelefono" class="form-label">Ingrese el telefono</label>
+                  <input type="text" name="strTelefono" #name="ngModel" [(ngModel)]="tiendaService.selected.strTelefono"
+                  value="" placeholder="Ingrese el telefono" class="form-control">
+              </div>
+              <div class="form-group mb-3">
+                <label for="strTelefono" class="form-label">Ingrese el Url Web</label>
+                <input type="text" name="strUrlWeb" #name="ngModel" [(ngModel)]="tiendaService.selected.strUrlWeb"
+                value="" placeholder="Ingrese el Url Web" class="form-control">
+            </div>
+              <button class="btn btn-secondary">Nuevo</button>
+          </form>
+      </div>
+      <div class="col-8 p-3">
+          <table class="table table-bordered">
+              <thead>
+                  <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Dirección</th>
+                    <th scope="col">Teléfono</th>
+                    <th scope="col">Url Web</th>
+                    <th scope="col">Operaciones</th>
+                  </tr>
+                </thead>
+            <tbody>
+              <tr *ngFor="let tienda of tiendaService.tiendag.cont">
+                  <td>{{ tienda.strNombre }}</td>
+                  
+                  <td>{{ tienda.strDireccion}}</td>
+                  <td>{{ tienda.strTelefono }}</td>
+                  <td>{{ tienda.strUrlWeb }}</td>
+                  <td>
+                    <a (click)="editTienda(tienda)" class="btn btn-secondary btn-sm">
+                      <i class="material-icons">edit</i>
+                    </a>
+                    <a (click)="deleteTienda(tienda._id, dataForm)" class="btn btn-danger btn-sm">
+                      <i class="material-icons">delete</i>
+                    </a>
+                  </td>
+                </tr>
+                <tr *ngIf="tiendaService.tiendag.cont==''">
+                    <td colspan="7" style="text-align: center;">No existen registros</td>
+                </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+
+

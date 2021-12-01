@@ -1,0 +1,62 @@
+
+
+<div class="container">
+  <div class="row">
+      <div class="col-4 p-3">
+        <form #dataForm="ngForm" (ngSubmit)="addAnimalito(dataForm)">
+          <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="animalitoService.selected._id">
+              <div class="form-group mb-3">
+                  <label for="strNombre" class="form-label">Nombre</label>
+                  <input type="text" name="strNombre" #name="ngModel" [(ngModel)]="animalitoService.selected.strNombre"
+                placeholder="Ingrese el nombre del animalito" class="form-control">
+              </div>
+              <div class="form-group mb-3">
+                  <label for="strTipoAnimal" class="form-label">Tipo de animal</label>
+                  <input id="strTipoAnimal" type="text" name="strTipoAnimal" #name="ngModel" [(ngModel)]="animalitoService.selected.strTipoAnimal"
+                  placeholder="Ingrese el tipo de animalito" class="form-control">
+              </div>
+              <div class="form-group mb-3">
+                  <label for="nmbEdad" class="form-label">Edad</label>
+                  <input type="number" name="nmbEdad" #name="ngModel" [(ngModel)]="animalitoService.selected.nmbEdad"
+                  placeholder="Ingrese la edad del animalito" class="form-control">
+              </div>
+              <div class="form-group mb-3">
+                  <label for="strSexo" class="form-label">Genero del Animal</label>
+                  <input type="text" name="strSexo" #name="ngModel" [(ngModel)]="animalitoService.selected.strSexo"
+                  value="" placeholder="Ingrese el genero del animalito" class="form-control">
+              </div>
+              <button class="btn btn-secondary">Nuevo</button>
+          </form>
+      </div>
+      <div class="col-8 p-3">
+          <table class="table table-bordered">
+            <thead>
+              <th>Nombre</th>
+              <th>Tipo de animalito</th>
+              <th>Edad</th>
+              <th>Genero</th>
+              <th>Operations</th>
+            </thead>
+            <tbody>
+              <tr *ngFor="let animalito of animalitoService.animalitog.cont">
+                <td>{{ animalito.strNombre }}</td>
+                <td>{{ animalito.strTipoAnimal }}</td>
+                <td>{{ animalito.nmbEdad }}</td>
+                <td>{{ animalito.strSexo }}</td>
+                <td>
+                  <a (click)="editAnimalito(animalito)" class="btn btn-secondary btn-sm">
+                    <i class="material-icons">edit</i>
+                  </a>
+                  <a (click)="deleteAnimalito(animalito._id, dataForm)" class="btn btn-danger btn-sm">
+                    <i class="material-icons">delete</i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+  </div>
+
+</div>
+
+

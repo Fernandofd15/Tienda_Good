@@ -1,0 +1,81 @@
+
+<div class="container">
+    <div class="row">
+        <div class="col-4 p-3">
+          <form #dataForm="ngForm" (ngSubmit)="addUsuario(dataForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="usuarioService.selected._id">
+                <div class="form-group mb-3">
+                    <label for="strNombre" class="form-label">Nombre</label>
+                    <input type="text" name="strNombre" #name="ngModel" [(ngModel)]="usuarioService.selected.strNombre"
+                  placeholder="Ingrese el nombre del usuario" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="strApellidos" class="form-label">Apellidos</label>
+                    <input id="strApellidos" type="text" name="strApellidos" #name="ngModel" [(ngModel)]="usuarioService.selected.strApellidos"
+                    placeholder="Ingrese los apellidos" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nmbEdad" class="form-label">Edad</label>
+                    <input type="number" name="nmbEdad" #name="ngModel" [(ngModel)]="usuarioService.selected.nmbEdad"
+                    placeholder="Ingrese la edad" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="strCorreo" class="form-label">Ingrese el correo</label>
+                    <input type="email" name="strCorreo" #name="ngModel" [(ngModel)]="usuarioService.selected.strCorreo"
+                    value="" placeholder="Ingrese el correo" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="strDireccion" class="form-label">Ingrese la dirección</label>
+                    <input type="text" name="strDireccion" #name="ngModel" [(ngModel)]="usuarioService.selected.strDireccion"
+                    value="" placeholder="Ingrese la dirección" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="strTelefono" class="form-label">Ingrese el telefono</label>
+                    <input type="text" name="strTelefono" #name="ngModel" [(ngModel)]="usuarioService.selected.strTelefono"
+                    value="" placeholder="Ingrese el telefono" class="form-control">
+                </div>
+                <button class="btn btn-secondary">Nuevo</button>
+            </form>
+        </div>
+        <div class="col-8 p-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                      <th scope="col">Nombre</th>
+                      <th scope="col">Apellidos</th>
+                      <th scope="col">Edad</th>
+                      <th scope="col">Correo</th>
+                      <th scope="col">Dirección</th>
+                      <th scope="col">Teléfono</th>
+                      <th scope="col">Operaciones</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr *ngFor="let usuario of usuarioService.usuariog.cont">
+                    <td>{{ usuario.strNombre }}</td>
+                    <td>{{ usuario.strApellidos }}</td>
+                    <td>{{ usuario.nmbEdad }}</td>
+                    <td>{{ usuario.strCorreo }}</td>
+                    <td>{{ usuario.strDireccion}}</td>
+                    <td>{{ usuario.strTelefono }}</td>
+                    <td>
+                      <a (click)="editUsuario(usuario)" class="btn btn-secondary btn-sm">
+                        <i class="material-icons">edit</i>
+                      </a>
+                      <a (click)="deleteUsuario(usuario._id, dataForm)" class="btn btn-danger btn-sm">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="usuarioService.usuariog.cont==''">
+                      <td colspan="7" style="text-align: center;">No existen registros</td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  
+  </div>
+  
+  
+  

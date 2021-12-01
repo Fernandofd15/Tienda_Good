@@ -1,0 +1,69 @@
+<div class="container">
+    <div class="row">
+        <div class="col-4 p-3">
+          <form #dataForm="ngForm" (ngSubmit)="addCompra(dataForm)">
+            <input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="compraService.selected._id">
+                <div class="form-group mb-3">
+                    <label for="idUsuario" class="form-label">Id de Usuario</label>
+                    <input type="text" name="idUsuario" #name="ngModel" [(ngModel)]="compraService.selected.idUsuario"
+                  placeholder="Ingrese el id de usuario" class="form-control">
+                </div>
+                
+                <div class="form-group mb-3">
+                    <label for="idAnimalito" class="form-label">Ingrese el Id del Animalito</label>
+                    <input type="text" name="idAnimalito" #name="ngModel" [(ngModel)]="compraService.selected.idAnimalito"
+                    value="" placeholder="Ingrese el id del animalito" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="idTienda" class="form-label">Ingrese el Id de la Tienda</label>
+                    <input type="text" name="idTienda" #name="ngModel" [(ngModel)]="compraService.selected.idTienda"
+                    value="" placeholder="Ingrese el id de la tienda" class="form-control">
+                </div>
+                <div class="form-group mb-3">
+                    <label for="nmbPrecio" class="form-label">Ingrese el precio de la compra</label>
+                    <input type="number" name="nmbPrecio" #name="ngModel" [(ngModel)]="compraService.selected.nmbPrecio"
+                    value="" placeholder="Ingrese el precio de la compra" class="form-control">
+                </div>
+                
+                <button class="btn btn-secondary">Nuevo</button>
+            </form>
+        </div>
+        <div class="col-8 p-3">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                      <th scope="col">Id Usuario</th>
+                      <th scope="col">Id Animalito</th>
+                      <th scope="col">Id Tienda</th>
+                      <th scope="col">Precio</th>
+                      <th scope="col">Operaciones</th>
+                    </tr>
+                  </thead>
+              <tbody>
+                <tr *ngFor="let compra of compraService.comprag.cont">
+                    <td>{{ compra.idUsuario }}</td>
+                    
+                    <td>{{ compra.idAnimalito}}</td>
+                    <td>{{ compra.idTienda}}</td>
+                    <td>{{ compra.nmbPrecio }}</td>
+                    <td>
+                      <a (click)="editCompra(compra)" class="btn btn-secondary btn-sm">
+                        <i class="material-icons">edit</i>
+                      </a>
+                      <a (click)="deleteCompra(compra._id, dataForm)" class="btn btn-danger btn-sm">
+                        <i class="material-icons">delete</i>
+                      </a>
+                    </td>
+                  </tr>
+                  <tr *ngIf="compraService.comprag.cont==''">
+                      <td colspan="7" style="text-align: center;">No existen registros</td>
+                  </tr>
+              </tbody>
+            </table>
+        </div>
+    </div>
+  
+  </div>
+  
+  
+  
